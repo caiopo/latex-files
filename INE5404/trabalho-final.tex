@@ -73,21 +73,6 @@
 
 
 
-% ---
-% Informações de dados para CAPA e FOLHA DE ROSTO
-% ---
-% \titulo{Projeto Final de Programação Orientada a Objetos 2}
-% \autor{Autor: Caio Pereira Oliveira
-% \\Equipe: João Victor Fagundes e Caio Pereira Oliveira}
-% \local{UFSC}
-% \data{1/12/2015}
-% ---
-
-% ---
-% Configurações de aparência do PDF final
-
-% alterando o aspecto da cor azul
-
 % informações do PDF
 \makeatletter
 \hypersetup{
@@ -150,21 +135,12 @@
 % ELEMENTOS PRÉ-TEXTUAIS
 % ----------------------------------------------------------
 
-%---
-%
-% Se desejar escrever o artigo em duas colunas, descomente a linha abaixo
-% e a linha com o texto ``FIM DE ARTIGO EM DUAS COLUNAS''.
-% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
-%
-%---
 % página de titulo
 
-% \centering
-
 \begin{center}
-
+\thispagestyle{empty}
 \includegraphics[width=0.30\textwidth]{brasao_ufsc}\par\vspace{1cm}
-{\scshape\LARGE Universidade Federal de Santa Catarina \par}
+{\scshape\Large Universidade Federal de Santa Catarina \par}
 \vspace{1cm}
 {\scshape\Large Projeto Final de Programação Orientada a Objetos\par}
 \vspace{1.5cm}
@@ -201,8 +177,9 @@ Pokémon é uma franquia de jogos muito popular, seu primeiro lançado em 1995, 
 \end{center}
 
 
-
-
+% ----------------------------------------------------------
+% Uso do programa
+% ----------------------------------------------------------
 \newpage
 \section*{}
 
@@ -219,7 +196,7 @@ A navegação através pelo programa é feita através de menus.
 No menu principal, existem 3 opções para o usuário:
 
 \begin{center}
-\includegraphics[width=0.5\textwidth]{menu}\par\vspace{1cm}
+\includegraphics[width=0.5\textwidth]{menu}\par
 \end{center}
 
 \begin{itemize}
@@ -243,18 +220,168 @@ E ao escolher {\bfseries View Pokedéx}, será aberta a janela da Pokédex, que 
 {\Large Montador de time}
 \end{center}
 
-
+Ao chegar nessa janela, o usuário poderá começar a montar seu time, partindo de um time vazio (ou de um time importado, caso tenha escolhido esta opção no menu principal.
 
 \begin{center}
-\includegraphics[width=1\textwidth]{team_half}\par\vspace{1cm}
+\includegraphics[width=1\textwidth]{team_half}\par
+\end{center}
+
+Para inserir um Pokémon em uma posição vazia do time, basta clicar no botão que representa a posição desejada e a janela de busca abrirá.
+Ao clicar em uma posição que já tenha um Pokémon, uma janela com informações detalhadas sobre o Pokémon abrirá.
+Nesta janela também existe a opção de exportar o time para um arquivo externo e de remover um Pokémon de uma posição.
+
+\newpage
+\begin{center}
+{\Large Busca de Pokémon}
+\end{center}
+
+Ao iniciar a busca, o usuário deverá informar pelo menos parte do nome do Pokémon que deseja inserir em seu time.
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{search_prompt}\par
+\end{center}
+
+Se mais de um Pokémon satisfizer o nome inserido na busca, o programa abrirá uma janela pedindo que o usuário escolha apenas um deles.
+
+\begin{center}
+\includegraphics[width=1\textwidth]{search_results}\par
+\end{center}
+
+\newpage
+\begin{center}
+{\Large Janela Pokedéx}
+\end{center}
+
+No menu principal, ao escolher a opção {\bfseries View Pokedéx}, esta janela abrirá.
+
+\begin{center}
+\includegraphics[width=1\textwidth]{pokedex}\par
+\end{center}
+
+Ela possui uma lista com todos os Pokémons. Clicar no nome de um Pokémon, uma janela com informações detalhadas sobre ele abrirá.
+
+\newpage
+\begin{center}
+{\Large Informações detalhadas do Pokémon}
+\end{center}
+
+Esta janela exibe informações detalhadas sobre o Pokémon selecionado na janela Pokedéx ou no Montador de equipes.
+
+\begin{center}
+\includegraphics[width=0.3\textwidth]{detail_window}\par
+\end{center}
+
+Ao clicar no botão \textbf{Descriptions}, uma janela com as descrições de cada Pokémon abrirá.
+
+\begin{center}
+\includegraphics[width=1\textwidth]{description}\par
 \end{center}
 
 
+% ----------------------------------------------------------
+% Uso do programa
+% ----------------------------------------------------------
+\newpage
+\section*{}
 
-% \begin{center}
-% \includegraphics[width=1\textwidth]{team_full}\par\vspace{1cm}
-% \end{center}
+\begin{center}
+{\HUGE Análise do problema}
+\end{center}
 
+O principal objetivo do programa é auxiliar treinadores Pokémon a montarem suas equipes para batalhar outros treinadores sem precisar consultar o jogo.
+
+O principal resultado do programa são as informações sobre cada Pokémon e sobre os times montados.
+
+\section*{}
+
+\begin{center}
+{\HUGE Validação dos dados}
+\end{center}
+
+A principal validação de dados é a entrada recebida na busca por Pokémons, caso uma entrada inválida seja inserida deverá exibir uma mensagem de erro e não poderá \textit{crashar}.
+
+\begin{center}
+\includegraphics[width=1\textwidth]{tratamento_input}\par
+\end{center}
+
+\begin{center}
+\includegraphics[width=1\textwidth]{tratamento_input2}\par
+\end{center}
+
+
+% ----------------------------------------------------------
+% Arquitetura/Projeto
+% ----------------------------------------------------------
+
+\newpage
+\begin{center}
+{\HUGE Arquitetura/Projeto}
+\end{center}
+
+O padrão de projeto utilizado é o \textbf{Model-View-Controller}.
+
+\begin{center}
+\includegraphics[width=1\textwidth]{mvc}\par
+\end{center}
+
+As classes \textbf{Team}, \textbf{PokedexWrapper} e todas as outras que extendem \textbf{ModelClass} formam o \textbf{Model}, que tem a responsabilidade de guardar os dados do programa.
+
+As classes do pacote \textbf{window} formam o \textbf{View}, que tem a responsabilidade de exibir os dados das classes do Model para o usuário.
+
+O \textbf{Controller} é formado pelas classes \textbf{Main} e \textbf{TeamBuilderWindowManager}, que tem a responsabilidade de controlar o programa de acordo com os dados fornecidos pelo View.
+
+\newpage
+
+\begin{center}
+{\Large Diagrama de Classes}
+\end{center}
+
+\begin{center}
+\includegraphics[width=1\textwidth]{Class_Diagram}\par
+\end{center}
+
+\newpage
+\begin{center}
+{\HUGE Cálculos/Comportamento/Resultados}
+\end{center}
+
+A maior parte das interações são feitas através de botões (JButton) que despacham ações (ActionListener). A maior parte das interações resultam em criação de janelas/navegação entre menus.
+
+Os todos dados dos Pokémons são obtidos utilizando a PokeAPI (http://pokeapi.co/), que recebe chamadas em cada instanciação das classe que extendem ModelClass.
+
+A parte gráfica foi feita usando o pacote Swing, nativo do Java.
+
+Também foram utilizadas bibliotecas para a parte de comunicação com a API e para \textit{parsing} do JSON recebido da API.
+
+\vspace{1cm}
+
+\begin{center}
+{\HUGE Conclusão}
+\end{center}
+
+Este trabalho é o terceiro projeto iniciado (e único finalizado) com a finalidade de ser apresentado como trabalho final de Programação Orientada a Objetos.
+
+Como futuras continuações para este projeto, sugiro como prioridade a implementação de seletor de Moves de Pokémons, permitindo um Montador de times mais fiel ao jogo.
+
+Estou satisfeito com o resultado, se houvesse mais tempo antes da entrega, mais funcionalidades poderiam ser implementadas.
+
+\vspace{1cm}
+
+\begin{center}
+{\HUGE Referências}
+\end{center}
+
+\begin{itemize}
+
+\item\href{http://pokeapi.co/}{PokeAPI} - API utilizada para buscar todos os dados usados no programa.
+
+\item\href{http://stackoverflow.com/}{Stack Overflow} - Para dúvidas em geral.
+
+\item\href{https://github.com/caiopo/pokemon-team-builder}{https://github.com/caiopo/pokemon-team-builder} - Repositório do projeto
+
+\item\href{https://github.com/caiopo/PokeJava}{https://github.com/caiopo/PokeJava} - Repositório do fork da biblioteca PokeJava melhorada por mim
+
+\end{itemize}
 
 
 \end{document}
